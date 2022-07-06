@@ -2,8 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import "../styles/App.css";
 
-export default function App() {
-
+export default function App({ id, popularity, title }) {
   const [getData, setGetData] = useState([]);
 
   useEffect(() => {
@@ -16,14 +15,7 @@ export default function App() {
       .then((data) => {
         console.log(data);
 
-        // const dataReceived = [];
-        // data.results.forEach((film) => {
-        //   dataReceived.push(film)
-        // });
-
         setGetData(data.results);
-        // setGetData(data.results[0].title);
-        
       });
   }, []);
 
@@ -31,14 +23,15 @@ export default function App() {
     <div className="container">
       <h1>Movies List</h1>
 
-      <div className="container_movie">
-
-        <div>
-          {getData.map((data) => {
-            return data.title;
-          })}
-        </div>
-    
+      <div className="movies_container">
+        <ul className="movies_list">
+          {getData.map((movie) => (
+            <div className="movie_card">
+              <p className="movie_popularity">{movie.popularity}</p>
+              <p className="movie_title"> {movie.title}</p>
+            </div>
+          ))}
+        </ul>
       </div>
     </div>
   );
