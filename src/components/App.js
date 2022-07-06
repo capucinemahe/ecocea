@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import "../styles/App.css";
 
-export default function App({ movie }) {
+export default function App() {
   const [getData, setGetData] = useState([]);
 
   const [getSelected, setGetSelected] = useState([]);
@@ -36,16 +36,15 @@ export default function App({ movie }) {
     <div className="container">
       <h1>Movies List</h1>
 
-      <p> selected {getSelected.length} </p>
+      <p> ({getSelected.length} selected) </p>
 
       <div className="movies_container">
         <ul className="movies_list">
           {getData.map((movie) => (
             <li
               key={movie.id}
-              className="movie_card"
-              onClick={() => addId(movie.id)}
-            >
+              className={`movie_card ${isSelected(movie.id) ? 'green': ''}`}
+              onClick={() => addId(movie.id)}>
               <p className="movie_popularity">{movie.popularity}</p>
               <p className="movie_title"> {movie.title}</p>
             </li>
