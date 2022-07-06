@@ -1,32 +1,40 @@
 .container {
   text-align: center;
-  margin-top: 30px;
-}
-
-.movies {
-  text-align: center;
-  margin: 20%;
+  margin-top: 40px;
 }
 
 .movies_container {
-  margin: 30px;
+  margin: 50px auto;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  text-align: center;
-  width: 50%;
-  border-style: solid 2px;
-  border-radius: 5px;
 }
+
+.movies_list {
+  column-count: 2;
+}
+
 .movies_list li {
   list-style: none;
 }
 
+.movie_card {
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgb(230, 230, 230);
+  margin-bottom: 23px;
+  border-radius: 5px;
+}
+
+.movie_popularity {
+  padding: 20px;
+  font-size: 16px;
+  font-weight: 500;
+}
 
 .movie_title {
   padding: 10px;
-  font-size: 13px;
-  font-weight: 400;
+  font-size: 12px;
+  font-weight: 300;
   background: rgb(246, 246, 246);
+  color: grey;
 }

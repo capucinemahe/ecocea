@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import "../styles/App.css";
 
-export default function App({ id, popularity, title }) {
+export default function App() {
   const [getData, setGetData] = useState([]);
 
   useEffect(() => {
@@ -13,8 +13,7 @@ export default function App({ id, popularity, title }) {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
-
+        //console.log(data);
         setGetData(data.results);
       });
   }, []);
