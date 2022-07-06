@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import Counter from "./Counter";
 import "../styles/App.css";
 
 export default function App() {
@@ -18,14 +19,22 @@ export default function App() {
       });
   }, []);
 
+  const handleClick = (id) => {
+    console.log(id);
+  };
+
   return (
     <div className="container">
       <h1>Movies List</h1>
 
+      <Counter />
+
       <div className="movies_container">
         <ul className="movies_list">
           {getData.map((movie) => (
-            <li key={movie.id} className="movie_card">
+            <li key={movie.id} className="movie_card" onClick={() => {
+              handleClick(movie.id)
+            }}>
               <p className="movie_popularity">{movie.popularity}</p>
               <p className="movie_title"> {movie.title}</p>
             </li>
