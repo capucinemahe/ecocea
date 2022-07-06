@@ -1,10 +1,11 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import Counter from "./Counter";
 import "../styles/App.css";
 
-export default function App() {
+export default function App({movie}) {
   const [getData, setGetData] = useState([]);
+
+  const [count, setCount] = useState("");
 
   useEffect(() => {
     fetch(
@@ -20,23 +21,26 @@ export default function App() {
   }, []);
 
   const handleClick = (id) => {
+    setCount(id);
     console.log(id);
+
+    alert(`Vous avez selectionné le film ${id} ? Très bon choix`)
   };
 
   return (
     <div className="container">
       <h1>Movies List</h1>
 
-      <Counter />
+      <p> selected {count} </p>
 
       <div className="movies_container">
         <ul className="movies_list">
           {getData.map((movie) => (
-            <li key={movie.id} className="movie_card" onClick={() => {
-              handleClick(movie.id)
-            }}>
+            <li key={movie.id} className="movie_card" onClick={() => handleClick(movie.id)}>
+
               <p className="movie_popularity">{movie.popularity}</p>
               <p className="movie_title"> {movie.title}</p>
+
             </li>
           ))}
         </ul>

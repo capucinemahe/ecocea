@@ -1,21 +1,21 @@
-import React from 'react';
-import { useState } from "react";
+// import React from 'react';
+// import { useState } from "react";
 
 
-export default function Counter({id}) {
+// export default function Counter({id}) {
 
-    const [count, setCount] = useState(0);
+//     const [count, setCount] = useState(0);
 
-  return (
-    <div>
+//   return (
+//     <div>
 
-        <p>test counter</p>
+//         {/* <p>test counter</p>
     
-        <button onClick={() => setCount(count + 1)}> Increment </button>
-        <button onClick={() => setCount(count - 1)}> Decrement </button>
+//         <button onClick={() => setCount(count + 1)}> Increment </button>
+//         <button onClick={() => setCount(count - 1)}> Decrement </button> */}
     
-        <p>{count}</p>
+//         <p>{count}</p>
 
-    </div>
-  )
-}
+//     </div>
+//   )
+// }
