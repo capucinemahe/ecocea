@@ -2,10 +2,10 @@ import React from "react";
 import { useEffect, useState } from "react";
 import "../styles/App.css";
 
-export default function App({movie}) {
+export default function App({ movie }) {
   const [getData, setGetData] = useState([]);
 
-  const [count, setCount] = useState("");
+  const [getSelected, setGetSelected] = useState([]);
 
   useEffect(() => {
     fetch(
@@ -20,27 +20,34 @@ export default function App({movie}) {
       });
   }, []);
 
-  const handleClick = (id) => {
-    setCount(id);
-    console.log(id);
+  const isSelected = (id) => getSelected.includes(id);
 
-    alert(`Vous avez selectionné le film ${id} ? Très bon choix`)
-  };
+  function addId(id) {
+    if (isSelected(id)) {
+      console.log("already selected", id);
+    } else {
+      setGetSelected([...getSelected, id]);
+    }
+
+   // alert(`Vous avez selectionné le film ${id} ? Très bon choix`);
+  }
 
   return (
     <div className="container">
       <h1>Movies List</h1>
 
-      <p> selected {count} </p>
+      <p> selected {getSelected.length} </p>
 
       <div className="movies_container">
         <ul className="movies_list">
           {getData.map((movie) => (
-            <li key={movie.id} className="movie_card" onClick={() => handleClick(movie.id)}>
-
+            <li
+              key={movie.id}
+              className="movie_card"
+              onClick={() => addId(movie.id)}
+            >
               <p className="movie_popularity">{movie.popularity}</p>
               <p className="movie_title"> {movie.title}</p>
-
             </li>
           ))}
         </ul>
