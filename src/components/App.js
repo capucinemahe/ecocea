@@ -26,10 +26,10 @@ export default function App({ id, popularity, title }) {
       <div className="movies_container">
         <ul className="movies_list">
           {getData.map((movie) => (
-            <div className="movie_card">
+            <li key={movie.id} className="movie_card">
               <p className="movie_popularity">{movie.popularity}</p>
               <p className="movie_title"> {movie.title}</p>
-            </div>
+            </li>
           ))}
         </ul>
       </div>

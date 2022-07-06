@@ -19,6 +19,10 @@
   border-style: solid 2px;
   border-radius: 5px;
 }
+.movies_list li {
+  list-style: none;
+}
+
 
 .movie_title {
   padding: 10px;
