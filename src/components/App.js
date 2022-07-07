@@ -3,9 +3,8 @@ import { useEffect, useState } from "react";
 import "../styles/App.css";
 
 export default function App() {
-  const [getData, setGetData] = useState([]);
-
-  const [getSelected, setGetSelected] = useState([]);
+  const [movies, setMovies] = useState([]);
+  const [selectedMovies, setSelectedMovies] = useState([]);
 
   useEffect(() => {
     fetch(
@@ -16,35 +15,37 @@ export default function App() {
       })
       .then((data) => {
         //console.log(data);
-        setGetData(data.results);
+        setMovies(data.results);
       });
   }, []);
 
-  const isSelected = (id) => getSelected.includes(id);
+  //check if the array selectedMovies contain id
+  function isSelected(id) {
+    return selectedMovies.includes(id);
+  }
 
-  function addId(id) {
+  //on click, if id already present, id deleted from the array and returns an array
+  //if not present, added to the selectedMovies array
+  function handleClick(id) {
     if (isSelected(id)) {
-      console.log("already selected", id);
+      setSelectedMovies([...selectedMovies.filter(item => item !== id)]);
     } else {
-      setGetSelected([...getSelected, id]);
+      setSelectedMovies([...selectedMovies, id]);
     }
-
-   // alert(`Vous avez selectionné le film ${id} ? Très bon choix`);
   }
 
   return (
     <div className="container">
       <h1>Movies List</h1>
 
-      <p> ({getSelected.length} selected) </p>
+      <p>({selectedMovies.length} selected)</p>
 
       <div className="movies_container">
         <ul className="movies_list">
-          {getData.map((movie) => (
-            <li
-              key={movie.id}
-              className={`movie_card ${isSelected(movie.id) ? 'green': ''}`}
-              onClick={() => addId(movie.id)}>
+          {movies.map((movie) => (
+            <li key={movie.id}
+              className={`movie_card ${isSelected(movie.id) ? "green" : ""}`}
+              onClick={() => handleClick(movie.id)}>
               <p className="movie_popularity">{movie.popularity}</p>
               <p className="movie_title"> {movie.title}</p>
             </li>
@@ -52,5 +53,5 @@ export default function App() {
         </ul>
       </div>
     </div>
-  );
-}
+  )
+};
