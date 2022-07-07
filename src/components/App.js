@@ -19,18 +19,23 @@ export default function App() {
       });
   }, []);
 
-  //check if the array selectedMovies contain id
   function isSelected(id) {
     return selectedMovies.includes(id);
   }
 
-  //on click, if id already present, id deleted from the array and returns an array
-  //if not present, added to the selectedMovies array
+  function addMovie(id) {
+    setSelectedMovies([...selectedMovies, id]);
+  }
+
+  function removeMovie(id) {
+    setSelectedMovies([...selectedMovies.filter((item) => item !== id)]);
+  }
+
   function handleClick(id) {
     if (isSelected(id)) {
-      setSelectedMovies([...selectedMovies.filter(item => item !== id)]);
+      removeMovie(id);
     } else {
-      setSelectedMovies([...selectedMovies, id]);
+      addMovie(id);
     }
   }
 
@@ -53,5 +58,5 @@ export default function App() {
         </ul>
       </div>
     </div>
-  )
-};
+  );
+}
